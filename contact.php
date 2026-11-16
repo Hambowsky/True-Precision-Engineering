@@ -7,10 +7,22 @@ $errors = [];
 $formOld = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     [$errors, $d] = validate_enquiry($_POST, time());
+    $files = [];
+    if (!$_POST && (int)($_SERVER['CONTENT_LENGTH'] ?? 0) > 0) {
+        // Upload bigger than post_max_size: PHP drops the whole form.
+        $errors = ['Your attachments were too large to send. Please keep them under ' . (UPLOAD_MAX_BYTES >> 20) . ' MB in total, or email them to ' . EMAIL . '.'];
+        $d['form'] = 'enquiry';
+    } elseif ($d['form'] === 'enquiry') {
+        [$fileErrors, $files] = validate_files($_FILES['drawings'] ?? []);
+        $errors = array_merge($errors, $fileErrors);
+    }
     if (!$errors) {
         $subject = ($d['form'] === 'enquiry' ? 'Website enquiry from ' : 'Callback request from ') . $d['name'];
-        $body = "Name: {$d['name']}\nEmail: {$d['email']}\nPhone: {$d['phone']}\n\n{$d['message']}\n\n-- Sent from " . SITE_URL . '/contact';
-        $headers = ['From' => SITE_NAME . ' <' . MAIL_FROM . '>', 'Content-Type' => 'text/plain; charset=UTF-8'];
+        $body = "Name: {$d['name']}\nEmail: {$d['email']}\nPhone: {$d['phone']}\n\n{$d['message']}\n\n"
+            . ($files ? 'Attached: ' . implode(', ', array_column($files, 'name')) . "\n\n" : '')
+            . '-- Sent from ' . SITE_URL . '/contact';
+        [$type, $body] = build_mail($body, $files, 'tpe-' . bin2hex(random_bytes(12)));
+        $headers = ['From' => SITE_NAME . ' <' . MAIL_FROM . '>', 'MIME-Version' => '1.0', 'Content-Type' => $type];
         if ($d['email'] !== '') $headers['Reply-To'] = $d['email'];
         if (mail(MAIL_TO, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers)) {
             header('Location: /contact?sent=' . $d['form'] . '#' . $d['form'], true, 303);
@@ -40,7 +52,7 @@ require __DIR__ . '/includes/header.php';
   <div class="wrap contact-grid">
     <div class="form-card">
       <h2>Send an enquiry</h2>
-      <p class="muted">Tell us what you need: part, material, quantity and when you need it. You can email drawings to <a href="mailto:<?= EMAIL ?>"><?= EMAIL ?></a>.</p>
+      <p class="muted">Tell us what you need and attach your drawings. Large files can also be emailed to <a href="mailto:<?= EMAIL ?>"><?= EMAIL ?></a>.</p>
       <?php $formId = 'enquiry'; include __DIR__ . '/includes/form.php'; ?>
     </div>
     <div class="info-stack">

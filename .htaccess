@@ -1,5 +1,14 @@
 Options -Indexes
 DirectoryIndex index.php
+
+# Drawing uploads on the quote form (mod_php hosts; PHP-FPM hosts use .user.ini)
+<IfModule mod_php.c>
+  php_value upload_max_filesize 10M
+  php_value post_max_size 12M
+</IfModule>
+<Files ".user.ini">
+  Require all denied
+</Files>
 ErrorDocument 404 /404.php
 
 RewriteEngine On

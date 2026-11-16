@@ -6,6 +6,6 @@ Plain PHP 8 site, no CMS, no database, no build step.
 - Shared layout and settings: `includes/` (phone, emails, address in `includes/config.php`)
 - Clean URLs (`/about`, `/services`…) and 301s from the old site: `.htaccess` (Apache)
 - SEO/AI: JSON-LD schema in every page, `sitemap.xml`, `robots.txt`, `llms.txt`
-- Contact forms send with PHP `mail()` to `MAIL_TO`. The host must be able to send for `MAIL_FROM` (SPF) or mail may land in spam.
+- Contact forms send with PHP `mail()` to `MAIL_TO`. The quote form takes up to 5 drawings (10 MB total), attached to the email, never stored; limits are in `includes/enquiry.php`, `.user.ini` and `.htaccess`. The host must be able to send for `MAIL_FROM` (SPF) or mail may land in spam.
 
 Test the form validator: `php -d zend.assertions=1 tests/enquiry_test.php`

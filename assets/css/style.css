@@ -265,3 +265,7 @@ small { font-size: .8em; }
   *, *::before, *::after { transition: none !important; }
 }
 .site-footer .muted { color: var(--on-steel-2); }
+.file-drop input[type="file"] { padding: 18px 14px; border: 1.5px dashed #c3c8cf; background: var(--bg-soft); cursor: pointer; font-size: .9rem; }
+.file-drop input[type="file"]:hover { border-color: var(--brand); }
+.file-drop input[type="file"]::file-selector-button { font: 600 .85rem var(--body); margin-right: 12px; padding: 9px 16px; border: 0; border-radius: 999px; background: var(--steel); color: #fff; cursor: pointer; }
+.file-drop > small { font-weight: 400; }

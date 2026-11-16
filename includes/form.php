@@ -1,11 +1,12 @@
 <?php
 /** Enquiry form. $formId = 'callback' (name + phone) or 'enquiry' (full). Posts to /contact which handles it. */
+require_once __DIR__ . '/enquiry.php';
 $full = $formId === 'enquiry';
 $mine = ($formOld['form'] ?? '') === $formId;
 $old  = $mine ? $formOld : [];
 $v = fn($k) => e($old[$k] ?? '');
 ?>
-<form class="form form-<?= $formId ?>" method="post" action="/contact#<?= $formId ?>" id="<?= $formId ?>">
+<form class="form form-<?= $formId ?>" method="post"<?= $full ? ' enctype="multipart/form-data"' : '' ?> action="/contact#<?= $formId ?>" id="<?= $formId ?>">
   <?php if (($_GET['sent'] ?? '') === $formId): ?>
   <p class="notice ok" role="status">Thank you, your message has been sent. We'll be in touch shortly.</p>
   <?php endif; ?>
@@ -21,7 +22,19 @@ $v = fn($k) => e($old[$k] ?? '');
   <?php endif; ?>
   <label><span>Contact number<?= $full ? ' <small>(optional)</small>' : '' ?></span><input type="tel" name="phone" <?= $full ? '' : 'required' ?> maxlength="30" autocomplete="tel" value="<?= $v('phone') ?>"></label>
   <?php if ($full): ?>
-  <label><span>Message</span><textarea name="message" rows="5" required maxlength="5000"><?= $v('message') ?></textarea></label>
+  <label><span>Message</span><textarea name="message" rows="5" required maxlength="5000" placeholder="Part, material, quantity and when you need it"><?= $v('message') ?></textarea></label>
+  <label class="file-drop"><span>Drawings <small>(optional)</small></span>
+    <input type="file" name="drawings[]" multiple accept=".<?= implode(',.', UPLOAD_EXT) ?>" data-max-files="<?= UPLOAD_MAX_FILES ?>" data-max-bytes="<?= UPLOAD_MAX_BYTES ?>">
+    <small>PDF, DXF, DWG, STEP, IGES, JPG or PNG. Up to <?= UPLOAD_MAX_FILES ?> files, <?= UPLOAD_MAX_BYTES >> 20 ?> MB in total.</small>
+  </label>
+  <script>
+  document.currentScript.previousElementSibling.querySelector('input').addEventListener('change', e => {
+    const i = e.target, files = [...i.files], bytes = files.reduce((n, f) => n + f.size, 0);
+    i.setCustomValidity(files.length > +i.dataset.maxFiles ? `Please choose no more than ${i.dataset.maxFiles} files.`
+      : bytes > +i.dataset.maxBytes ? `These files add up to ${(bytes / 1048576).toFixed(1)} MB. The limit is ${i.dataset.maxBytes / 1048576} MB.` : '');
+    i.reportValidity();
+  });
+  </script>
   <?php endif; ?>
   <button class="btn" type="submit"><?= $full ? 'Send enquiry' : 'Call me back' ?></button>
   <p class="form-note">We only use your details to reply. <a href="/privacy">Privacy notice</a></p>
