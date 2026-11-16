@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/config.php';
 
 $faqs = [
     ['What precision engineering services does True Precision Engineering offer?',
-     'We provide sub-contract CNC turning (with live tooling), CNC milling, manual turning and milling, jig boring, slotting, surface and cylindrical grinding, toolmaking (jigs, fixtures, press tools and mould tools), light fabrication and full mechanical assembly.'],
+     'We provide sub-contract CNC turning (with live tooling), CNC milling, manual turning and milling, jig boring, slotting, surface grinding, toolmaking (jigs, fixtures, press tools and mould tools), light fabrication and full mechanical assembly.'],
     ['Where is True Precision Engineering based?',
      'Our 12,500 sq. ft. machine shop is on Ryton Industrial Estate, Newburn Bridge Road, Blaydon-on-Tyne, NE21 4SQ, close to Newcastle upon Tyne and Gateshead. We supply customers across the North East, the rest of the UK and beyond.'],
     ['Are you ISO 9001 certified?',

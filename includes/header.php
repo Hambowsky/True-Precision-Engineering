@@ -33,7 +33,7 @@ $org = [
     'areaServed' => ['North East England', 'United Kingdom'],
     'sameAs' => [LINKEDIN],
     'hasCredential' => ['@type' => 'EducationalOccupationalCredential', 'name' => 'ISO 9001 Quality Management System (NQA, UKAS accredited)'],
-    'knowsAbout' => ['CNC turning', 'CNC milling', 'Precision machining', 'Toolmaking', 'Jigs and fixtures', 'Press tools', 'Mould tools', 'Surface grinding', 'Cylindrical grinding', 'Light fabrication', 'Mechanical assembly'],
+    'knowsAbout' => ['CNC turning', 'CNC milling', 'Precision machining', 'Toolmaking', 'Jigs and fixtures', 'Press tools', 'Mould tools', 'Surface grinding', 'Light fabrication', 'Mechanical assembly'],
 ];
 $schemas = array_merge([$org], $page['schema'] ?? []);
 ?><!doctype html>

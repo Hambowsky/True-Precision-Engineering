@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/config.php';
 $page = [
     'path' => '/services',
     'title' => 'CNC Turning, Milling, Grinding & Toolmaking Services | True Precision Engineering',
-    'description' => 'Sub-contract CNC turning, CNC milling, surface and cylindrical grinding, jigs, fixtures, press and mould tools, light fabrication and assembly from our ISO 9001 machine shop near Newcastle.',
+    'description' => 'Sub-contract CNC turning, CNC milling, surface grinding, jigs, fixtures, press and mould tools, light fabrication and assembly from our ISO 9001 machine shop near Newcastle.',
     'schema' => [[
         '@context' => 'https://schema.org',
         '@type' => 'Service',
@@ -14,7 +14,7 @@ $page = [
             '@type' => 'OfferCatalog',
             'name' => 'Precision engineering services',
             'itemListElement' => array_map(fn($s) => ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => $s]],
-                ['CNC turning', 'CNC milling', 'Surface grinding', 'Cylindrical grinding', 'Jig boring', 'Toolmaking – jigs, fixtures, press and mould tools', 'Light fabrication', 'Mechanical assembly']),
+                ['CNC turning', 'CNC milling', 'Surface grinding', 'Jig boring', 'Toolmaking – jigs, fixtures, press and mould tools', 'Light fabrication', 'Mechanical assembly']),
         ],
     ]],
 ];
@@ -48,7 +48,6 @@ require __DIR__ . '/includes/header.php';
           <tr><td>Milling</td><td>CNC mill, 21-station turret</td><td>750 × 500 mm table</td></tr>
           <tr><td>Milling</td><td>Turret &amp; universal mills, jig borer, slotter</td><td class="muted">Ask us</td></tr>
           <tr><td>Grinding</td><td>Surface grinder</td><td>200 × 450 mm</td></tr>
-          <tr><td>Grinding</td><td>Cylindrical grinder</td><td class="muted">Ask us</td></tr>
         </tbody>
       </table>
     </div>
