@@ -20,27 +20,57 @@ $page = [
 ];
 require __DIR__ . '/includes/header.php';
 ?>
-<section class="page-head"><div class="wrap"><h1>Our services</h1>
-  <p>Sub-contract precision machining, toolmaking, fabrication and assembly from one ISO 9001 certified site in Blaydon-on-Tyne.</p></div></section>
-
-<?php include __DIR__ . '/includes/plant-list.php'; ?>
-
-<section class="section alt">
-  <div class="wrap split">
-    <div class="prose">
-      <h2>Products we produce</h2>
-      <p>The list below is a guide to the work produced in our sub-contract toolroom. We also have facilities for light fabrication, and fitting and assembly work is carried out on request.</p>
-      <p>Whether you need a single replacement part to get a production line running again, tooling for a new product, or repeat batches of machined components, we can quote from your drawing, sample or CAD model.</p>
-    </div>
-    <div class="card"><?php include __DIR__ . '/includes/products.php'; ?></div>
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">Services</p>
+    <h1>Precision machining, toolmaking &amp; assembly</h1>
+    <p>Sub-contract engineering from one ISO 9001 certified site in Blaydon-on-Tyne. Send us a drawing and we'll handle the rest.</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="wrap narrow prose">
-    <h2>Industries and customers</h2>
-    <p>We work with manufacturers, maintenance teams and engineering companies who need accurate parts delivered on time. Typical work includes production line components, machine spares, tooling and fixtures, and precision components for assemblies.</p>
-    <p class="center"><a class="btn" href="/contact">Send a request</a></p>
+  <div class="wrap"><?php include __DIR__ . '/includes/plant-list.php'; ?></div>
+</section>
+
+<section class="section soft">
+  <div class="wrap split split-top">
+    <div>
+      <p class="eyebrow">Capacity</p>
+      <h2>Machine capacity at a glance</h2>
+      <p>Maximum work sizes on our main machines. Not sure if your part fits? Call us and we'll tell you straight away.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="spec">
+        <thead><tr><th scope="col">Process</th><th scope="col">Machine</th><th scope="col">Max size</th></tr></thead>
+        <tbody>
+          <tr><td>Turning</td><td>CNC lathe with live tooling</td><td>700 mm swing × 2,000 mm between centres</td></tr>
+          <tr><td>Turning</td><td>Centre lathes</td><td>550 mm swing × 2,000 mm between centres</td></tr>
+          <tr><td>Milling</td><td>CNC mill, 21-station turret</td><td>750 × 500 mm table</td></tr>
+          <tr><td>Milling</td><td>Turret &amp; universal mills, jig borer, slotter</td><td class="muted">Ask us</td></tr>
+          <tr><td>Grinding</td><td>Surface grinder</td><td>200 × 450 mm</td></tr>
+          <tr><td>Grinding</td><td>Cylindrical grinder</td><td class="muted">Ask us</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split split-top">
+    <div>
+      <p class="eyebrow">Products</p>
+      <h2>What we produce</h2>
+      <p>A guide to the work that goes through our sub-contract toolroom. Light fabrication, fitting and assembly are also available on request.</p>
+      <p>Whether you need one replacement part to get a line running again, tooling for a new product, or repeat batches of components, we can quote from your drawing, sample or CAD model.</p>
+    </div>
+    <?php include __DIR__ . '/includes/products.php'; ?>
+  </div>
+</section>
+
+<section class="section soft">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">How it works</p><h2>From drawing to delivery</h2></div>
+    <?php include __DIR__ . '/includes/process.php'; ?>
   </div>
 </section>
 <?php require __DIR__ . '/includes/footer.php'; ?>

@@ -1,4 +1,4 @@
-<ul class="checks">
+<ul class="chips">
   <li>CNC machining centre work</li>
   <li>Precision machined components</li>
   <li>Jigs &amp; fixtures</li>

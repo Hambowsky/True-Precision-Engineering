@@ -28,41 +28,56 @@ $gallery = [
 ];
 require __DIR__ . '/includes/header.php';
 ?>
-<section class="page-head"><div class="wrap"><h1>About us</h1></div></section>
+<section class="page-head">
+  <div class="wrap">
+    <p class="eyebrow">About us</p>
+    <h1>A family-run engineering business since 1989</h1>
+    <p>Toolmaking and precision machining for customers across the North East, the UK and beyond.</p>
+  </div>
+</section>
 
 <section class="section">
   <div class="wrap split">
-    <div>
-      <img class="rounded" src="/assets/img/workshop.webp" width="1080" height="608" alt="True Precision Engineering workshop on Ryton Industrial Estate, Blaydon-on-Tyne">
-      <h2 class="h4">True Precision Engineering</h2>
-      <address><?= implode('<br>', array_map('e', ADDRESS)) ?></address>
-      <p><a href="tel:<?= PHONE_INTL ?>"><?= PHONE ?></a><br>
-      <a href="mailto:<?= EMAIL_2 ?>"><?= EMAIL_2 ?></a><br>
-      <a href="mailto:<?= EMAIL ?>"><?= EMAIL ?></a><br>
-      <a href="<?= LINKEDIN ?>" rel="noopener" target="_blank">Follow us on LinkedIn</a></p>
-    </div>
+    <img class="photo" src="/assets/img/workshop.webp" width="1080" height="608" alt="True Precision Engineering workshop on Ryton Industrial Estate, Blaydon-on-Tyne">
     <div class="prose">
-      <h2>A family-run engineering business, established 1989</h2>
-      <p>True Precision Engineering was founded in 1989 as a small, family-run business. Over more than three decades it has grown into a well-established and respected sub-contract engineering company, providing toolmaking and precision machining services to customers across the North East, nationwide and beyond.</p>
-      <h3>12,500 sq. ft. of production space</h3>
-      <p>Our factory space of more than 12,500 sq. ft. at Ryton Industrial Estate, Blaydon-on-Tyne, houses CNC turning and milling, conventional machining, grinding, fabrication and assembly facilities under one roof — so components can go from raw material to finished assembly without leaving the building.</p>
-      <h3>Quality you can rely on</h3>
-      <p>All of our operating procedures follow our ISO 9001 quality management system, certified by NQA (UKAS accredited). Our ethos is simple: give every customer service levels that exceed their expectations.</p>
-      <h3>A flexible partner</h3>
-      <p>Our friendly, flexible approach has allowed us to build long-term supply partnerships with a varied and diverse customer base — from one-off repairs and prototypes to repeat production batches.</p>
-      <img src="/assets/img/iso-9001-ukas.webp" width="200" height="150" alt="NQA ISO 9001 Quality Management certified, UKAS accredited" loading="lazy">
+      <h2>Our story</h2>
+      <p>True Precision Engineering was founded in 1989 as a small, family-run business. Over more than three decades it has grown into a well-established and respected sub-contract engineering company.</p>
+      <p>Our friendly, flexible approach has built long-term supply partnerships with a varied and diverse customer base, from one-off repairs and prototypes to repeat production batches.</p>
     </div>
   </div>
 </section>
 
-<section class="section alt">
+<section class="section soft">
+  <div class="wrap feature-grid">
+    <div><h3>12,500 sq. ft. facility</h3><p>CNC and conventional machining, grinding, fabrication and assembly under one roof, so parts go from raw material to finished assembly without leaving the building.</p></div>
+    <div><h3>ISO 9001 quality</h3><p>Every job follows our ISO 9001 quality management system, certified by NQA (UKAS accredited).</p><img src="/assets/img/iso-9001-ukas.webp" width="120" height="90" alt="NQA ISO 9001 Quality Management certified, UKAS accredited" loading="lazy"></div>
+    <div><h3>Flexible service</h3><p>Office hours Monday to Friday, with the workshop on call 24 hours a day. Working hours can be extended to suit your deadlines.</p></div>
+  </div>
+</section>
+
+<section class="section" id="work">
   <div class="wrap">
-    <h2 class="section-title">Examples of our work</h2>
+    <div class="section-head"><p class="eyebrow">Gallery</p><h2>Examples of our work</h2><p>Tap any photo to enlarge it.</p></div>
     <div class="gallery">
       <?php foreach ($gallery as $n => $alt): ?>
-      <figure><img src="/assets/img/gallery-<?= $n ?>.webp" width="500" height="500" alt="<?= e($alt) ?>" loading="lazy"></figure>
+      <button type="button" class="gallery-item" data-src="/assets/img/gallery-<?= $n ?>.webp" data-alt="<?= e($alt) ?>"><img src="/assets/img/gallery-<?= $n ?>.webp" width="500" height="500" alt="<?= e($alt) ?>" loading="lazy"></button>
       <?php endforeach; ?>
     </div>
   </div>
 </section>
+
+<dialog id="lightbox" class="lightbox" aria-label="Enlarged photo">
+  <form method="dialog"><button class="lightbox-close" aria-label="Close">×</button></form>
+  <img src="" alt="">
+  <p></p>
+</dialog>
+<script>
+(() => {
+  const d = document.getElementById('lightbox'), img = d.querySelector('img'), cap = d.querySelector('p');
+  document.querySelectorAll('.gallery-item').forEach(b => b.addEventListener('click', () => {
+    img.src = b.dataset.src; img.alt = cap.textContent = b.dataset.alt; d.showModal();
+  }));
+  d.addEventListener('click', e => { if (e.target === d) d.close(); });
+})();
+</script>
 <?php require __DIR__ . '/includes/footer.php'; ?>

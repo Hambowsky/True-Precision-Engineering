@@ -57,7 +57,7 @@ $schemas = array_merge([$org], $page['schema'] ?? []);
 <link rel="alternate" type="text/plain" title="LLM summary" href="/llms.txt">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/css/style.css">
 <?php foreach ($schemas as $s): ?>
 <script type="application/ld+json"><?= json_encode($s, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?></script>
@@ -67,9 +67,7 @@ $schemas = array_merge([$org], $page['schema'] ?? []);
 <a class="skip" href="#content">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-inner">
-    <a href="/" class="logo"><img src="/assets/img/logo.png" srcset="/assets/img/logo.png 1x, /assets/img/logo-1200.png 2x" width="320" height="53" alt="True Precision Engineering Ltd"></a>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav"
-      onclick="this.setAttribute('aria-expanded', document.getElementById('main-nav').classList.toggle('open'))"><span></span><span></span><span></span></button>
+    <a href="/" class="logo"><img src="/assets/img/logo.png" srcset="/assets/img/logo.png 1x, /assets/img/logo-1200.png 2x" width="260" height="43" alt="True Precision Engineering Ltd"></a>
     <nav id="main-nav" aria-label="Main">
       <ul>
         <?php foreach (NAV as $href => $label): ?>
@@ -77,10 +75,10 @@ $schemas = array_merge([$org], $page['schema'] ?? []);
         <?php endforeach; ?>
       </ul>
     </nav>
-    <div class="header-call">
-      <small>Contact us today!</small>
-      <a href="tel:<?= PHONE_INTL ?>"><?= PHONE ?></a>
-    </div>
+    <a class="header-phone" href="tel:<?= PHONE_INTL ?>"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg><?= PHONE ?></a>
+    <a class="btn btn-sm" href="/contact#enquiry">Get a quote</a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="main-nav"
+      onclick="this.setAttribute('aria-expanded', document.getElementById('main-nav').classList.toggle('open'))"><span></span><span></span><span></span></button>
   </div>
 </header>
 <main id="content">
