@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors = array_merge($errors, $fileErrors);
     }
     if (!$errors) {
-        $subject = ($d['form'] === 'enquiry' ? 'Website enquiry from ' : 'Callback request from ') . $d['name'];
+        $subject = (IS_LIVE ? '' : '[Test site] ') . ($d['form'] === 'enquiry' ? 'Website enquiry from ' : 'Callback request from ') . $d['name'];
         $body = "Name: {$d['name']}\nEmail: {$d['email']}\nPhone: {$d['phone']}\n\n{$d['message']}\n\n"
             . ($files ? 'Attached: ' . implode(', ', array_column($files, 'name')) . "\n\n" : '')
             . '-- Sent from ' . SITE_URL . '/contact';

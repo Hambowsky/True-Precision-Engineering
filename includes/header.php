@@ -40,6 +40,8 @@ $schemas = array_merge([$org], $page['schema'] ?? []);
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<?php if (!IS_LIVE): ?><meta name="robots" content="noindex, nofollow">
+<?php endif; ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= e($page['title']) ?></title>
 <meta name="description" content="<?= e($page['description']) ?>">

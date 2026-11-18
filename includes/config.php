@@ -13,6 +13,9 @@ const LINKEDIN   = 'https://www.linkedin.com/company/true-precision-engineering-
 const ADDRESS    = ['Ryton Industrial Estate', 'Newburn Bridge Road', 'Blaydon-on-Tyne', 'Tyne and Wear', 'NE21 4SQ'];
 const MAP_QUERY  = 'True Precision Engineering, Newburn Bridge Rd, Blaydon-on-Tyne NE21 4SQ';
 
+// True only on the live domain; the newsite. test subdomain gets noindex and tagged emails.
+define('IS_LIVE', strtolower($_SERVER['HTTP_HOST'] ?? '') === 'trueprecisionltd.co.uk');
+
 const NAV = ['/' => 'Home', '/about' => 'About', '/services' => 'Services', '/contact' => 'Contact'];
 
 function e(string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
